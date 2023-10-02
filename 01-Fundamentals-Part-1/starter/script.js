@@ -32,3 +32,14 @@ console.log(typeof year);
 console.log("bhupi" + " is" + " hot");
 console.log(2 ** 3);
 console.log(27 > 290);
+
+//taking decisions if/else statements
+
+const age = 14;
+
+if (age >= 18) {
+  console.log("Sarah can Start Driving 🚗");
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sarah is Too Young Wait another ${yearsLeft} years`);
+}
