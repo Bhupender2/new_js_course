@@ -44,3 +44,42 @@ let koalosAverageScore =
   (koalosFirstGame + koalasSecondGame + koalasThirdGame) / 3;
 
 console.log(koalosAverageScore);
+
+//type conversion and type coercion
+
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear);
+console.log(inputYear + "18");
+console.log("23" + 1);
+
+const money = 0;
+if (money) {
+  console.log("save");
+} else {
+  console.log("get a job");
+}
+
+// equatiy operator
+const favourite = Number(prompt("whats your number bitch!!!"));
+console.log(favourite);
+console.log(typeof favourite);
+
+if (favourite === 23) {
+  console.log("cool bitch !! 23 is a cool number");
+} else if (favourite === 7) {
+  console.log("7 is also a good number");
+} else {
+  console.log("this is a trash number");
+}
+
+//loical operators
+
+const hasDriverLicense = true;
+const hasGoodVision = true;
+const isTired = true;
+
+if (hasDriverLicense && hasGoodVision && !isTired) {
+  console.log("sarah is a good fit for driving");
+} else {
+  console.log("someone else should drive");
+}
