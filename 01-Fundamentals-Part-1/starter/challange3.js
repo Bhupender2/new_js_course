@@ -18,34 +18,52 @@ if (scoreDolphin > scoreKoalas && scoreDolphin >= 100) {
 
 //switch case
 
-const day = "monday";
+// const day = "monday";
 
-switch (day) {
-  case "monday":
-    console.log("i would plan the course structure");
-    console.log("i would go to coding meetup");
-    break;
+// switch (day) {
+//   case "monday":
+//     console.log("i would plan the course structure");
+//     console.log("i would go to coding meetup");
+//     break;
 
-  case "tuesday":
-    console.log("i would prepare theory videos");
-    break;
+//   case "tuesday":
+//     console.log("i would prepare theory videos");
+//     break;
 
-  case "wednesday":
-  case "thursday":
-    console.log("i would write code examples");
-    break;
+//   case "wednesday":
+//   case "thursday":
+//     console.log("i would write code examples");
+//     break;
 
-  case "friday":
-    console.log("i would record coding videos");
-    break;
+//   case "friday":
+//     console.log("i would record coding videos");
+//     break;
 
-  case "saturday":
-  case "sunday":
-    console.log("i will enjoy my weekend :D");
-    break;
+//   case "saturday":
+//   case "sunday":
+//     console.log("i will enjoy my weekend :D");
+//     break;
 
-  default:
-    console.log("its not a valid day !");
-}
+//   default:
+//     console.log("its not a valid day !");
+// }
 
 //now we will do
+
+const day = "sunday";
+
+if (day === "monday") {
+  console.log("i would plan the course structure");
+  console.log("i would go to coding meetup");
+} else if (day === "tuesday") {
+  console.log("i would prepare theory videos");
+} else if (day === "wednesday" || day === "thursday") {
+  // we use OR logical operator
+  console.log("i would write code examples");
+} else if (day === "friday") {
+  console.log("i would record coding videos");
+} else if (day === "saturday" || day === "sunday") {
+  console.log("i will enjoy the weekend");
+} else {
+  console.log("not a valid day");
+}
