@@ -67,3 +67,17 @@ if (day === "monday") {
 } else {
   console.log("not a valid day");
 }
+
+//ternary operator use cases
+const age = 56;
+
+if (age >= 18) {
+  console.log("drink wine 🍷");
+} else {
+  console.log("drink water 🥤");
+}
+
+//lets do this with ternary operator
+
+const drink = age >= 18 ? "drink wine" : "drink waterrr";
+console.log(drink); // this is so simple and easy
