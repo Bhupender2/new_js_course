@@ -33,3 +33,20 @@ const calcAge2 = function (birthYear) {
 
 const age2 = calcAge2(1996);
 console.log(age1, age2);
+
+//arrow functions
+
+const calcAge3 = (birthYear) => 2037 - birthYear; //automatically return hota h ismein no need to add return keyword
+
+const age3 = calcAge3(1999);
+
+console.log(age3);
+
+// arrow functions find your retirement age
+
+const yearUntilRetirement = (birthYear, firstName) => {
+  const age = 2037 - birthYear;
+  const retirement = 65 - age;
+  return `${firstName} will be retired in ${retirement} years`;
+};
+console.log(yearUntilRetirement(1998, "bob"));
