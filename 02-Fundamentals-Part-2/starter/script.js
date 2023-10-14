@@ -2,69 +2,92 @@
 
 //functions
 
-function logger() {
-  console.log("my name is slim shady");
-}
+// function logger() {
+//   console.log("my name is slim shady");
+// }
 // imvoking, calling and running the functions
-logger();
-logger();
-logger();
+// logger();
+// logger();
+// logger();
 
-function foodProcessor(apple, oranges) {
-  const juice = `juice with ${apple} apples and ${oranges} oranges`;
-  return juice;
-}
-const appleJuice = foodProcessor(5, 0);
-console.log(appleJuice);
+// function foodProcessor(apple, oranges) {
+//   const juice = `juice with ${apple} apples and ${oranges} oranges`;
+//   return juice;
+// }
+// const appleJuice = foodProcessor(5, 0);
+// console.log(appleJuice);
 
 //function declaration and expressions
 
 // function declaration and you can call them before even defining it which is basically not a good practice
-function calcAge1(birthYear) {
-  return 2037 - birthYear;
-}
-const age1 = calcAge1(1998);
-console.log(age1);
+// function calcAge1(birthYear) {
+//   return 2037 - birthYear;
+// }
+// const age1 = calcAge1(1998);
+// console.log(age1);
 
-//function expressions and you can not call them before defining it
-const calcAge2 = function (birthYear) {
-  return 2037 - birthYear;
-};
+// //function expressions and you can not call them before defining it
+// const calcAge2 = function (birthYear) {
+//   return 2037 - birthYear;
+// };
 
-const age2 = calcAge2(1996);
-console.log(age1, age2);
+// const age2 = calcAge2(1996);
+// console.log(age1, age2);
 
-//arrow functions
+// //arrow functions
 
-const calcAge3 = (birthYear) => 2037 - birthYear; //automatically return hota h ismein no need to add return keyword
+// const calcAge3 = (birthYear) => 2037 - birthYear; //automatically return hota h ismein no need to add return keyword
 
-const age3 = calcAge3(1999);
+// const age3 = calcAge3(1999);
 
-console.log(age3);
+// console.log(age3);
 
 // arrow functions find your retirement age
 
-const yearUntilRetirement = (birthYear, firstName) => {
-  const age = 2037 - birthYear;
-  const retirement = 65 - age;
-  return `${firstName} will be retired in ${retirement} years`;
-};
-console.log(yearUntilRetirement(1998, "bob"));
+// const yearUntilRetirement = (birthYear, firstName) => {
+//   const age = 2037 - birthYear;
+//   const retirement = 65 - age;
+//   return `${firstName} will be retired in ${retirement} years`;
+// };
+// console.log(yearUntilRetirement(1998, "bob"));
 
 //function calling function inside of it
 
-const cutPieces = function (fruits) {
-  return fruits * 4;
-};
+// const cutPieces = function (fruits) {
+//   return fruits * 4;
+// };
 
-const fruitProcessor = function (apples, oranges) {
-  const applePieces = cutPieces(apples);
-  const orangesPieces = cutPieces(oranges);
+// const fruitProcessor = function (apples, oranges) {
+//   const applePieces = cutPieces(apples);
+//   const orangesPieces = cutPieces(oranges);
 
-  const juice1 = `juice with ${applePieces} apple pieces and ${orangesPieces} oranges pieces`;
-  return juice1;
-};
+//   const juice1 = `juice with ${applePieces} apple pieces and ${orangesPieces} oranges pieces`;
+//   return juice1;
+// };
 
-console.log(fruitProcessor(5, 8));
+// console.log(fruitProcessor(5, 8));
 
 // coding challange javascript fundamentals part 2
+
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3; //arrow function
+
+//average score of dolhphin
+
+const avgDolphinsScore = calcAverage(44, 23, 71);
+
+//average score of Koalas
+
+const avgKoalasScore = calcAverage(65, 54, 49);
+
+// arrow function checkWinner
+
+const checkWinner = function (avgDolphins, avgKoalas) {
+  if (avgDolphins >= 2 * avgKoalas) {
+    console.log(`Dolphins wins the game (${avgDolphins} vs ${avgKoalas})`);
+  } else if (avgKoalas >= 2 * avgDolphins) {
+    console.log(`koalas wins the game (${avgKoalas} vs ${avgDolphins})`);
+  } else {
+    console.log("no ones wins the game");
+  }
+};
+checkWinner(avgDolphinsScore, avgKoalasScore);
