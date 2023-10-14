@@ -66,3 +66,5 @@ const fruitProcessor = function (apples, oranges) {
 };
 
 console.log(fruitProcessor(5, 8));
+
+// coding challange javascript fundamentals part 2
