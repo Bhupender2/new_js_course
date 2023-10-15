@@ -131,3 +131,14 @@ console.log(tips);
 
 const total = [tips[0] + bills[0], tips[1] + bills[1], tips[2] + bills[2]];
 console.log(total);
+
+//object
+const jonas = {
+  firstName: "Jonas",
+  lastName: "mehta",
+  age: 2037 - 1991,
+  jon: "teacher",
+  friends: ["Michael", "peter", "steven"],
+};
+
+console.log(jonas);
