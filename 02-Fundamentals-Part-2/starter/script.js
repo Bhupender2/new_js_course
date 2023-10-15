@@ -91,3 +91,20 @@ const checkWinner = function (avgDolphins, avgKoalas) {
   }
 };
 checkWinner(avgDolphinsScore, avgKoalasScore);
+
+// now we are starting with arrays
+
+function calcAge1(birthYear) {
+  return 2037 - birthYear;
+}
+
+const years = [1990, 2011, 2002, 1989];
+
+const age1 = calcAge1(years[0]);
+const age2 = calcAge1(years[1]);
+const age3 = calcAge1(years[years.length - 1]);
+
+console.log(age1, age2, age3);
+
+const ages = [age1, age2, age3];
+console.log(ages);
