@@ -108,3 +108,26 @@ console.log(age1, age2, age3);
 
 const ages = [age1, age2, age3];
 console.log(ages);
+
+// calculator bill values coding challenge
+
+const bills = [125, 555, 44];
+
+// building a function name calcTip
+
+const calcTip = (bill) => {
+  const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+  return tip;
+};
+
+console.log(calcTip(100));
+
+const tip1 = calcTip(bills[0]);
+const tip2 = calcTip(bills[1]);
+const tip3 = calcTip(bills[bills.length - 1]);
+
+const tips = [tip1, tip2, tip3];
+console.log(tips);
+
+const total = [tips[0] + bills[0], tips[1] + bills[1], tips[2] + bills[2]];
+console.log(total);
