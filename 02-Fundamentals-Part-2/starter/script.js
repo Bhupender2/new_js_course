@@ -186,3 +186,13 @@ for (let i = 0; i < yearsss.length; i++) {
   agesss.push(2037 - yearsss[i]);
 }
 console.log(agesss);
+
+//while loop let roll a dice until 6 comes
+
+//first select a random no
+let dice = Math.trunc(Math.random() * 6) + 1; // we use let coz we need to assign it as well
+
+while (dice !== 6) {
+  console.log(`you rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1; //we need to reassign the new random no otherwise it will run forever if the dice is not 6
+}
