@@ -136,9 +136,35 @@ console.log(total);
 const jonas = {
   firstName: "Jonas",
   lastName: "mehta",
-  age: 2037 - 1991,
-  jon: "teacher",
+  birthYear: 1990,
+  job: "teacher",
   friends: ["Michael", "peter", "steven"],
+  // calcAgee: function (birthYear) {
+  //   return 2037 - birthYear;
+  // },
+  calcAgee: function () {
+    return 2037 - this.birthYear; //this method or keywords point to jonas here coz it is equal to the object on which method is called
+  },
+  // calcAgee: function(){
+  //   this.age=2037-this.birthYear;
+  //   return this.age;
+  // }
 };
+console.log(jonas.calcAgee());
 
-console.log(jonas);
+// console.log(jonas);
+console.log(jonas.lastName);
+console.log(jonas["firstName"]);
+
+const nameKey = "Name";
+console.log(jonas["first" + nameKey]); // we have done some operation here we can put opertion in the brackets
+
+console.log(jonas); // value of the object
+console.log(jonas.friends);
+console.log(jonas.friends.length);
+console.log(jonas.friends[0]);
+// this is the sentence which i need to do write it dynamtically so ---jonas has 3 friends and his best friend name is called michael"
+
+console.log(
+  `${jonas.firstName} has ${jonas.friends.length} friends and his best friend name is called ${jonas.friends[0]}`
+);
