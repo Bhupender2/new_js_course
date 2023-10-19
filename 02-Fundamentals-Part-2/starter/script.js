@@ -142,15 +142,22 @@ const jonas = {
   // calcAgee: function (birthYear) {
   //   return 2037 - birthYear;
   // },
+  // calcAgee: function () {
+  //   return 2037 - this.birthYear; //this method or keywords point to jonas here coz it is equal to the object on which method is called
+  // },
+  hasDriverLicense: false,
   calcAgee: function () {
-    return 2037 - this.birthYear; //this method or keywords point to jonas here coz it is equal to the object on which method is called
+    this.age = 2037 - this.birthYear; // this.age will add an another property to the object with key value pair name  age
+    return this.age;
   },
-  // calcAgee: function(){
-  //   this.age=2037-this.birthYear;
-  //   return this.age;
-  // }
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAgee()} teacher and he has ${
+      this.hasDriverLicense ? "A" : "no"
+    } driver License`;
+  },
 };
 console.log(jonas.calcAgee());
+console.log(jonas.age);
 
 // console.log(jonas);
 console.log(jonas.lastName);
@@ -168,3 +175,4 @@ console.log(jonas.friends[0]);
 console.log(
   `${jonas.firstName} has ${jonas.friends.length} friends and his best friend name is called ${jonas.friends[0]}`
 );
+console.log(jonas.getSummary());
