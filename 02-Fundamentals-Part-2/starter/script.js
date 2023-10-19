@@ -176,3 +176,13 @@ console.log(
   `${jonas.firstName} has ${jonas.friends.length} friends and his best friend name is called ${jonas.friends[0]}`
 );
 console.log(jonas.getSummary());
+
+//how to construct an array using loops
+
+const yearsss = [1999, 1998, 2002, 2000, 2011];
+const agesss = []; //we first atleast to initialise the empty array;
+
+for (let i = 0; i < yearsss.length; i++) {
+  agesss.push(2037 - yearsss[i]);
+}
+console.log(agesss);
