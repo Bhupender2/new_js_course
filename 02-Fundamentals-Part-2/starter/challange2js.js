@@ -34,3 +34,4 @@ if (markMiller.bmi > johnSmith.bmi) {
     `${johnSmith.fullName}'s BMI (${johnSmith.bmi}) is higher than ${markMiller.fullName}'s BMI (${markMiller.bmi})`
   );
 }
+// coding challange Q-4 javascript Fundamentals Part 2
