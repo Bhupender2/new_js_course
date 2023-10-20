@@ -40,8 +40,8 @@ const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]; //creating an arra
 const tips = [];
 const totals = []; // creating an empty array of totals and tips
 
-const calcTip = function (bills) {
-  return bills >= 50 && bills <= 300 ? bills * 0.15 : bills * 0.2;
+const calcTip = function (billss) {
+  return billss >= 50 && billss <= 300 ? billss * 0.15 : billss * 0.2;
 };
 
 for (let i = 0; i < bills.length; i++) {
