@@ -35,3 +35,17 @@ if (markMiller.bmi > johnSmith.bmi) {
   );
 }
 // coding challange Q-4 javascript Fundamentals Part 2
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]; //creating an array of Bills
+const tips = [];
+const totals = []; // creating an empty array of totals and tips
+
+const calcTip = function () {
+  return bills >= 50 && bills <= 300 ? bills * 0.15 : bills * 0.2;
+};
+
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(bills[i] + calcTip(bills[i]));
+}
+console.log(tips, totals);
