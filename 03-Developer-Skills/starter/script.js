@@ -36,3 +36,17 @@ const calcTempAmpltitude = function (temps1, temps2) {
   return max - min; //return an temperature amplitude which is the difference between max and min value
 };
 console.log(calcTempAmpltitude([1, 2, 3, 4, 5, 88], [2, 9, 4, 6, 90]));
+
+// convert degree celcius into kelvin
+const measureKelvin = function () {
+  const measurement = {
+    type: "temp",
+    unit: "celcius",
+    value: prompt("Degree celcius"), // prompt function hmesha ek string provide karta h always return a string
+  };
+  console.table(measurement);
+  const kelvin = Number(measurement.value) + 273; // object k bahar call kiya h toh "this" use nahi karenge kelvin hi use karenge
+  console.log(typeof measurement.value);
+  return kelvin;
+};
+console.log(measureKelvin());
