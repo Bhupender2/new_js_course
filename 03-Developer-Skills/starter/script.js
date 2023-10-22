@@ -42,7 +42,8 @@ const measureKelvin = function () {
   const measurement = {
     type: "temp",
     unit: "celcius",
-    value: prompt("Degree celcius"), // prompt function hmesha ek string provide karta h always return a string
+    // value: prompt("Degree celcius"), // prompt function hmesha ek string provide karta h always return a string
+    value: 10,
   };
   console.table(measurement);
   const kelvin = Number(measurement.value) + 273; // object k bahar call kiya h toh "this" use nahi karenge kelvin hi use karenge
@@ -50,3 +51,17 @@ const measureKelvin = function () {
   return kelvin;
 };
 console.log(measureKelvin());
+
+//coding challange question -1 developer setup
+
+const printForecast = function (arr) {
+  let forecastString = "";
+  for (let i = 0; i < arr.length; i++) {
+    forecastString += `...${arr[i]} degree celcius in ${i + 1} days`;
+  }
+  console.log(typeof forecastString);
+  return "..." + forecastString;
+};
+
+const forecast = printForecast([10, 20, 30, 11, 34]);
+console.log(forecast);
