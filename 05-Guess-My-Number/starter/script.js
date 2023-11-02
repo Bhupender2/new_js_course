@@ -14,7 +14,8 @@
 // we want to do something on clicking the botton
 // after selecting the check class ...we simply use addeventlistner . basically addeventlistener just watches for event to happen and then it trigerr the event handler to execute the instruction ..and event handler is the code which execute when the event occurs
 
-let secretNumber = Math.trunc(Math.random() * 20) + 1; //[0,20)+1//[0,19]+1=[1,20] //now the number will be betweeen 1 to 20 where 1,20 is included!
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
+//[0,20)+1//[0,19]+1=[1,20] //now the number will be betweeen 1 to 20 where 1,20 is included!
 
 let score = 20;
 let highScore = 0;
