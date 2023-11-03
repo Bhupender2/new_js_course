@@ -19,19 +19,21 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
 let highScore = 0;
+const displayMessage = function (message) {
+  return (document.querySelector('.message').textContent = message);
+};
 
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(typeof guess, guess);
   if (!guess) {
-    document.querySelector('.message').textContent = 'no number added!';
+    displayMessage('no number added!');
   }
 
   //we need to refactor the code now because there is a lot of repeatable code now which defies the dry principle.
   else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent =
-        guess > secretNumber ? 'Too High 📈' : 'Too low 📉';
+      displayMessage(guess > secretNumber ? 'Too High 📈' : 'Too low 📉');
       score--;
       document.querySelector('.score').textContent = score;
     } else {
