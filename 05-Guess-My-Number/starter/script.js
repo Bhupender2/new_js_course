@@ -25,9 +25,13 @@ document.querySelector('.check').addEventListener('click', function () {
   console.log(typeof guess, guess);
   if (!guess) {
     document.querySelector('.message').textContent = 'no number added!';
-  } else if (guess > secretNumber) {
+  }
+
+  //we need to refactor the code now because there is a lot of repeatable code now which defies the dry principle.
+  else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent = ' Too High 📈';
+      document.querySelector('.message').textContent =
+        guess > secretNumber ? 'Too High 📈' : 'Too low 📉';
       score--;
       document.querySelector('.score').textContent = score;
     } else {
@@ -35,17 +39,30 @@ document.querySelector('.check').addEventListener('click', function () {
         'Boooooo You lost the game 😢 ';
       document.querySelector('.score').textContent = 0;
     }
-  } else if (guess < secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = ' Too low 📉';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent =
-        'Boooooo You lost the game 😢';
-      document.querySelector('.score').textContent = 0;
-    }
-  } else if (guess === secretNumber) {
+  }
+
+  // else if (guess > secretNumber) {
+  //   if (score > 1) {
+  //     document.querySelector('.message').textContent = ' Too High 📈';
+  //     score--;
+  //     document.querySelector('.score').textContent = score;
+  //   } else {
+  //     document.querySelector('.message').textContent =
+  //       'Boooooo You lost the game 😢 ';
+  //     document.querySelector('.score').textContent = 0;
+  //   }
+  // } else if (guess < secretNumber) {
+  //   if (score > 1) {
+  //     document.querySelector('.message').textContent = ' Too low 📉';
+  //     score--;
+  //     document.querySelector('.score').textContent = score;
+  //   } else {
+  //     document.querySelector('.message').textContent =
+  //       'Boooooo You lost the game 😢';
+  //     document.querySelector('.score').textContent = 0;
+  //   }
+  // }
+  else if (guess === secretNumber) {
     document.querySelector('.message').textContent =
       'Bravo ! You are right 🎊 ';
     document.querySelector('.number').textContent = secretNumber;
