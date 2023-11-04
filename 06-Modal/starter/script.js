@@ -14,9 +14,19 @@ const closeModal = function () {
   modal.classList.add('hidden');
 };
 
-console.log(btsOpenModal);
 for (let i = 0; i < btsOpenModal.length; i++) {
   btsOpenModal[i].addEventListener('click', openModal); // here we define / declare the openModal we don't call the openModal() like this here coz it will execute the code immediately
 }
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
+
+//now we want that on clicking esc button it will close down the modal so for doing this we have to use addEventListener on document(it will cover the whole page so pressing the esc wherever it will close the modal)
+
+document.addEventListener('keydown', function (e) {
+  console.log(e);
+  //now we want on clicking esc modal should be closed if it was opened before.
+  if (e.key === 'Escape' && !modal.classList.remove('hidden')) {
+    closeModal();
+  }
+});
+//document.addEventListener, you are attaching an event listener to the entire document. This means the event listener will respond to events that occur anywhere within the document.
