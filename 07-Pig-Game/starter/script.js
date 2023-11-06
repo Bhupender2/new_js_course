@@ -14,7 +14,7 @@ const current1EL = document.getElementById('current--1');
 //naming the id name  classname, images like this dynamically
 //declaring variables here and then later resiassigning them
 let scores, currentScore, activePlayer, playing;
-
+  
 // starting conditions
 
 const init = function () {
@@ -106,3 +106,4 @@ btnHold.addEventListener('click', function () {
 btnNew.addEventListener('click', init);
 
 // we need to make the enternal state variable back to the initial state so we need to repeat the code on resetting but ofcourse we will not do so we will make the function here named init and store everything here and call it so that we can use it
+ 
