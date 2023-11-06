@@ -104,3 +104,5 @@ btnHold.addEventListener('click', function () {
 
 // reseting the game on clicking new button
 btnNew.addEventListener('click', init);
+
+// we need to make the enternal state variable back to the initial state so we need to repeat the code on resetting but ofcourse we will not do so we will make the function here named init and store everything here and call it so that we can use it
