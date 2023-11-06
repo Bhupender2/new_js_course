@@ -12,16 +12,32 @@ const btnHold = document.querySelector('.btn--hold');
 const current0EL = document.getElementById('current--0');
 const current1EL = document.getElementById('current--1');
 //naming the id name  classname, images like this dynamically
+//declaring variables here and then later resiassigning them
+let scores, currentScore, activePlayer, playing;
 
 // starting conditions
-score0EL.textContent = 0; // here we give a number but JS will change it to string
-score1EL.textContent = 0;
-diceEL.classList.add('hidden');
-const scores = [0, 0]; // final score of both player so it is stored in array so that's why it is handy to set activePlayer to 0 and other thing also like score0EL etc etc it is more like the dice images naming so that we can use it dynamically
-let currentScore = 0; // we will use let coz we have to change/add this inside the function
-let activePlayer = 0; // it will change so we will use let
-//rolling the dice Functionally
-let playing = true; // at first we are playing the game and its the state variable and it will be updated if score >=20
+
+const init = function () {
+  scores = [0, 0]; // final score of both player so it is stored in array so that's why it is handy to set activePlayer to 0 and other thing also like score0EL etc etc it is more like the dice images naming so that we can use it dynamically
+  currentScore = 0; // we will use let coz we have to change/add this inside the function
+  activePlayer = 0; // it will change so we will use let
+  //rolling the dice Functionally
+  playing = true; // at first we are playing the game and its the state variable and it will be updated if score >=20
+  // current Scores is resetting to zero
+  score0EL.textContent = 0; // here we give a number but JS will change it to string
+  score1EL.textContent = 0;
+  current0EL.textContent = 0;
+  current1EL.textContent = 0;
+  diceEL.classList.add('hidden');
+
+  //removing the winner class we can tell JS to remove the class even if its not there JS will happilly do that.
+  player0EL.classList.remove('player--winner');
+  player1EL.classList.remove('player--winner');
+  //making the player 1 as a default player
+  player0EL.classList.add('player--active'); // if already added js will not add a second one
+  player1EL.classList.remove('player--active');
+};
+init();
 
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0; //first we need to make the current score =0 of that player .
@@ -85,3 +101,6 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+// reseting the game on clicking new button
+btnNew.addEventListener('click', init);
