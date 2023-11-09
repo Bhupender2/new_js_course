@@ -1,20 +1,20 @@
 'use strict';
 
-// console.log(this); //if we simply console this keyword it will points to the global object (window)
+console.log(this); //if we simply console this keyword it will points to the global object (window)
 
-// const calcAge = function (birthyear) {
-//   console.log(2037 - birthyear);
-//   console.log(this); //as we know it will be undefined
-// };
-// calcAge(1991); // this keyword is only defined when the function is called if the function is not called than it will not assigned
+const calcAge = function (birthyear) {
+  console.log(2037 - birthyear);
+  console.log(this); //as we know it will be undefined
+};
+calcAge(1991); // this keyword is only defined when the function is called if the function is not called than it will not assigned
 
-// // now arrow function
+// now arrow function
 
-// const calcAgeArrow = birthyear => {
-//   console.log(2037 - birthyear);
-//   console.log(this); // as we know arrow function doesnt have their own this keyword so here it will point to this keyword in the global scope
-// };
-// calcAgeArrow(1199);
+const calcAgeArrow = birthyear => {
+  console.log(2037 - birthyear);
+  console.log(this); // as we know arrow function doesnt have their own this keyword so here it will point to this keyword in the global scope
+};
+calcAgeArrow(1199);
 
 // this keyword in the object
 const jonas = {
@@ -38,4 +38,4 @@ matilda.calcAge();
 // this is a regular function
 const f = jonas.calcAge;
 f();
-// in console it will say undefined(this keyword ) because its a regular function now (f is a regular function)
+// in console it will say undefined(this keyword ) because its a regular function now (f is a regular function )
