@@ -16,26 +16,78 @@ const calcAgeArrow = birthyear => {
 };
 calcAgeArrow(1199);
 
-// this keyword in the object
+// // this keyword in the object
+// // const jonas = {
+// //   year: 1997,
+// //   calcAge: function () {
+// //     console.log(this);
+// //     console.log(2037 - this.year);
+// //   },
+// // };
+// // jonas.calcAge();
+
+// const matilda = {
+//   year: 2017,
+// };
+
+// matilda.calcAge = jonas.calcAge; //we simply copy calcAge method from jonas to matilda that means now in matilda object calcAge function will also be present . now this is called method borrowing
+// // now matilda object is calling calcAge method and see is This Keyword is pointing towards matilda now
+// matilda.calcAge();
+
+// //important point - this keyword will point to matilda if matilda is the one who is calling the function it doesnt matter is if the calcAge function is written in the jonas object
+
+// // this is a regular function
+// const f = jonas.calcAge;
+// f();
+// in console it will say undefined(this keyword ) because its a regular function now (f is a regular function )
+
+// regular vs arrow function difference ----------------
+
+var firstName = 'Matilda'; // var create property in the global object (window) and it is one of the reason not to use var
+
 const jonas = {
-  year: 1997,
+  firstName: 'jonas',
+  year: 1996,
   calcAge: function () {
-    console.log(this);
+    // console.log(this);
     console.log(2037 - this.year);
+
+    //solution 1
+    // const self = this;
+    // const isMellianial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year<=1996);
+    // };
+    // isMellianial(); // this is a regular function so it will show undefined so we used we assigned this to the (self ) variable and then used it
+    //solution 2
+    const isMellianial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    isMellianial();
+  }, // here we use arrow function coz it will take this keyword from its parent function.
+
+  // never ever use an arrow function as a method
+  greet: () => {
+    console.log(`hey${this.firstName}`); // output is heyUndefined because arrow function dont have their own this keyword so they look for their parent scope this keyword and it is global scope (window ) here
   },
 };
+jonas.greet();
 jonas.calcAge();
 
-const matilda = {
-  year: 2017,
+// arguments keyword only exists in regular functions like function expression and function declaration but not in arrow function
+
+const addExrp = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
-matilda.calcAge = jonas.calcAge; //we simply copy calcAge method from jonas to matilda that means now in matilda object calcAge function will also be present . now this is called method borrowing
-// now matilda object is calling calcAge method and see is This Keyword is pointing towards matilda now
-matilda.calcAge();
+addExrp(2, 3, 8, 9); // we can put more argument it will not show errors it will just add on agruments object
 
-//important point - this keyword will point to matilda if matilda is the one who is calling the function it doesnt matter is if the calcAge function is written in the jonas object
+// arrow function
+const addExrpArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addExrpArrow(2, 3, 4, 5); // it will show error coz there is no arguments keyword (object ) in arrow function
 
-// this is a regular function
-const f = jonas.calcAge;
-f();
-// in console it will say undefined(this keyword ) because its a regular function now (f is a regular function )
+//------------------------------------------------
