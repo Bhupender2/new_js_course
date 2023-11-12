@@ -84,10 +84,48 @@ const addExrp = function (a, b) {
 addExrp(2, 3, 8, 9); // we can put more argument it will not show errors it will just add on agruments object
 
 // arrow function
-const addExrpArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
-addExrpArrow(2, 3, 4, 5); // it will show error coz there is no arguments keyword (object ) in arrow function
+// const addExrpArrow = (a, b) => {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExrpArrow(2, 3, 4, 5); // it will show error coz there is no arguments keyword (object ) in arrow function
 
 //------------------------------------------------
+// primitive type
+let lastName = 'williams';
+let oldLastName = lastName;
+lastName = 'davis';
+console.log(lastName, oldLastName); // davis williams
+
+// reference types
+
+const jessica = {
+  firstName: 'jessica',
+  lastName: 'williams',
+  age: 27,
+};
+const marriedJessica = jessica; // it will not create a new object it is just another variable in the stack which holds the reference to the original object it is because it   hold the same memory address
+marriedJessica.lastName = 'davis';
+console.log('before marriage:', jessica); // same object in  both
+console.log('after marriage', marriedJessica); // same object in both   {firstName:"jessica", lastName:"davis" , age: 27}
+
+// marriedJessica={} this object will stored in different position in memory so the refernce to the position have to change here and that doesnot work coz that is in the CALL STACK and its a constant in the stack
+
+// copying object
+const jessica2 = {
+  firstName: 'jessica',
+  lastName: 'williams',
+  age: 27,
+  family: ['alice', 'bhupi'],
+};
+const jessicaCopy = Object.assign({}, jessica2); // it will create a shallow copy (only to one level not in the deep level ( object inside object will not be copied ) )
+
+jessicaCopy.lastName = 'mehta';
+// they will not be a same object
+
+jessicaCopy.family.push('mary');
+jessicaCopy.family.push('mario');
+
+//everything is same but their lastname wil be different
+console.log('before marriage:', jessica2);
+console.log('after marriage', jessicaCopy);
