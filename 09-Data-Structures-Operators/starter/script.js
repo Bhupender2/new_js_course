@@ -124,7 +124,38 @@ const restaurant = {
       `Order Recieved ! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delievered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `here is your delicious pasta with ${ing1} , ${ing2} and ${ing3}`
+    );
+  },
 };
+// using spread operator---------real world example
+const ingredients = [
+  prompt("let's make pasta ingridient 1"),
+  prompt('ingredient 2'),
+  prompt('ingredients 3'),
+];
+console.log(ingredients);
+
+restaurant.orderPasta(...ingredients); // using spread operator rather than manually adding arguments like ingredients[0] etc etc
+
+//-----------------------------------------------------
+
+// since es 2018 spread operators can be used in objects even though they are not iterables.....
+
+//creating new restraunt object using restraunt object with some additonal data using spread operator
+
+const newRestraunt = { foundedIn: 1998, ...restaurant, founder: 'gussipi' }; // using spread operator here in objects
+
+//making a copy of restraunt object but this copy is good copy not a shallow one means innner object will have different address
+
+const restrauntCopy = { ...restaurant }; // making a copy here this copy is not shallow its a good copy with different address
+restrauntCopy.name = 'restrinto roma';
+console.log(restrauntCopy.name); // restrinto roma
+console.log(restaurant.name); // classico italiano
+// it is not a shallow copy which means that they would point to different name (different address)
 
 restaurant.orderDelivery({
   time: '22.30',
