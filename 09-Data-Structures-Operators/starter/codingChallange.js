@@ -97,3 +97,10 @@ const rest2 = {
   owner: 'bhupender',
   name: 'pizza la pizza',
 };
+
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+rest1.name &&= '<ANONYMOUS>';
+rest2.name &&= '<ANONYMOUS>';
+console.log(rest1, rest2);
