@@ -132,14 +132,14 @@ const restaurant = {
   },
 };
 // using spread operator---------real world example
-const ingredients = [
-  prompt("let's make pasta ingridient 1"),
-  prompt('ingredient 2'),
-  prompt('ingredients 3'),
-];
-console.log(ingredients);
+// const ingredients = [
+//   prompt("let's make pasta ingridient 1"),
+//   prompt('ingredient 2'),
+//   prompt('ingredients 3'),
+// ];
+// console.log(ingredients);
 
-restaurant.orderPasta(...ingredients); // using spread operator rather than manually adding arguments like ingredients[0] etc etc
+// restaurant.orderPasta(...ingredients); // using spread operator rather than manually adding arguments like ingredients[0] etc etc
 
 //-----------------------------------------------------
 
@@ -207,3 +207,12 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
+
+// for of loop for arrays
+
+const menu2 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const [i, el] of menu2.entries()) {
+  // we just destructe the array elements
+  console.log(`${i + 1}:${el}`);
+}
