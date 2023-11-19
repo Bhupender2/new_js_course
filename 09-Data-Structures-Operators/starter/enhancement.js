@@ -10,7 +10,7 @@ const openingHours = {
     open: 11,
     close: 23,
   },
-  [`day-${2 + 4}`]: {
+  [weekdays[6]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -51,3 +51,28 @@ const restaurant = {
     );
   },
 };
+console.log(restaurant.openingHours.mon?.open);
+
+//optional chaining is used there if the properties exists
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed'; // here we are retrieving property dymaically from openingHours object so we use "[ ]" square bracket notation not "." dot notation.
+  console.log(`on ${day} ,we are open at ${open} `);
+}
+
+// with optional chaining we can check if the method exists or not before we call it
+
+console.log(restaurant.order?.(0, 1) ?? 'method does not exists');
+
+// with optional chaining we can also check if the array is empty or not
+
+const users = [{ name: 'bhupender', email: 'b.mehtss2017@gmail' }];
+
+// with optional chaining
+console.log(users[0]?.name ?? 'user array empty');
+
+// without optional chaining
+if (users.length > 0) console.log(users[0].name);
+else console.log('empty array');
