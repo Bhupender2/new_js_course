@@ -216,3 +216,5 @@ for (const [i, el] of menu2.entries()) {
   // we just destructe the array elements
   console.log(`${i + 1}:${el}`);
 }
+
+// object literals enhancement here------
