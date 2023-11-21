@@ -76,3 +76,32 @@ console.log(users[0]?.name ?? 'user array empty');
 // without optional chaining
 if (users.length > 0) console.log(users[0].name);
 else console.log('empty array');
+
+//object loop but not directly more like their properties are iterable so we can loop them
+
+// PROPERTIES NAME
+
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `we are open at ${properties.length} days`;
+
+for (const day of properties) {
+  openStr += ` ${day},`;
+}
+console.log(openStr);
+
+//PROPERTY VALUES
+
+const values = Object.values(openingHours);
+console.log(values);
+
+// Entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(
+    `on ${day} the restraunt will open at ${open} and closed at ${close}`
+  );
+}

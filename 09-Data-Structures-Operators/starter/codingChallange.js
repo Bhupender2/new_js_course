@@ -104,3 +104,41 @@ rest2.numGuests ??= 10;
 rest1.name &&= '<ANONYMOUS>';
 rest2.name &&= '<ANONYMOUS>';
 console.log(rest1, rest2);
+
+//old method
+for (let i = 0; i < game.scored.length; i++) {
+  console.log(`Goal ${i + 1}: ${game.scored[i]} `);
+}
+
+//new method
+const gamePlayers = game.scored.entries(); // calling a method calling entries
+for (const player of gamePlayers) {
+  console.log(`Goal${player[0] + 1}: ${player[1]}`);
+}
+// calculating the average
+let avgOdd = 0;
+
+const oddValue = Object.values(game.odds);
+
+for (const odd of oddValue) {
+  avgOdd += odd;
+}
+
+console.log(avgOdd / oddValue.length);
+
+//printing the odds in the nice formatted way
+
+const oddName = Object.entries(game.odds);
+.
+console.log(oddName);
+
+for (const [name, value] of oddName) {
+  const drawStr = name === 'x' ? 'Draw' : `Victory ${game[name]}`;
+  console.log(`odd of  ${drawStr}: ${value}`); // we need to retrieve property dynamically so we use [] notation
+}
+
+const scorers = {
+  Gnarby: 1,
+  Hummels: 1,
+  Lewandowski: 2,
+};
