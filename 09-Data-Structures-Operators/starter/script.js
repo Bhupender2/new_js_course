@@ -217,4 +217,85 @@ for (const [i, el] of menu2.entries()) {
   console.log(`${i + 1}:${el}`);
 }
 
-// object literals enhancement here------
+// sets
+
+const orderSet = new Set(['pasta', 'pizza', 'rissoto', 'pasta', 'pizza']);
+console.log(orderSet); //{'pasta','pizza','rissoto'}
+
+console.log(new Set('jonas')); // string is also an iterable  {'j','o','n','a','s'}
+console.log(orderSet.size); // its size not length its the size of unique elements coz in set also unique values is considered
+
+console.log(orderSet.has('pasta')); // it will tell if the element is in the set or not
+orderSet.add('pie'); // adding element to the set
+console.log(orderSet);
+orderSet.delete('pasta'); // deleting the element to the set
+console.log(orderSet);
+//orderSet.clear(); // clearing all the elements from the set
+
+// we can not retrieve data from the set coz if all elements are unique and the order of the set is irrilevant so there is no point of retrieving data .( no need to geeting out data out of a set). all we need to know if the set has this element or not which we can by using "has" method ..if ur goal is the store the value in order and then retrieve it then its the best to use array not set
+
+// looping is also possible because set is a iterable
+for (const order of orderSet) console.log(order);
+
+// most useful use case of set is to remove all the duplicate values from an array
+const staff = ['waiter', 'chef', 'waiter', 'Manager', 'chef', 'waiter'];
+// if we just wanted to know how many unique postion there are
+console.log(
+  new Set(['waiter', 'chef', 'waiter', 'Manager', 'chef', 'waiter']).size
+); //3
+// creating a set and then converting the set into an array which is pretty easy
+const staffUnique = [...new Set(staff)]; // here using an spread operator (it works in every iterables)
+console.log(staffUnique);
+
+// how many unique alphabets are there in my name
+console.log(new Set('bhupendersinghmehta').size); //14
+
+//we use set whenever we need unique value otherwise we use arrays !!!!
+
+//----MAP DATA STRUCTURE---- is a datastructure that we use to map values to the key just like an object in map data is also stored in key value pairs but in object keys are basically string but in map it can be anything string , map , object , arrays anything
+
+// easiest way to create a map is to create an empty map
+const rest = new Map();
+// to fill up the map we can use 'set' method passing two arguments first one is key second one is value
+rest.set('name', 'classico Itaeyano');
+rest.set(1, 'friizein , italy');
+console.log(rest.set(2, 'lisbon ,germany')); // this was not only update the map but also return the whole map and beacuse of this we can chain the set method like these below
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('closed', '23')
+  .set(true, 'we are open ')
+  .set(false, 'we are closed');
+
+console.log(rest); // whole map
+
+// to read data from the map we use "get" method
+
+console.log(rest.get('name')); // passing the key so that it will return the key value
+console.log(rest.get(false)); // data type of key matters otherwise it will give undefined
+
+// lets see if our restraunt is closed or open
+const time = 21;
+console.log(rest.set(time > rest.set('open') && time < rest.set('closed'))); // we can know if we are open or closed
+
+// more like this rest.set(time>11 && time<23)
+
+console.log(rest.has('categories')); // to see if the key is present or not // true or false only
+console.log(rest.delete(2)); // used to delete the key from Map
+const arr = [1, 2];
+rest.set(arr, 'test'); // adding this propeties using get into the map data structure
+console.log(rest.size); // to see the size of the map total elements
+// rest.clear(); //to delete all the values
+// maps and set have similar properties beacuse both introduced in es6
+console.log(rest.get(arr)); // it will be undefined beacuse [1,2] and upper [1,2] are not the same object in heap they will point to different memory address so to solve that problem we need to store [1,2] into a variable so that they will poibt to the same memory adrerss
+
+console.log(rest.set(document.querySelector('h1'), 'heading')); // map is also used in dump elements like this and adding this property to the map DS
+
+//-------new way of popullating the map data structure instead of using set
+const question = new Map([
+  ['question', 'what is the best Programming language in the world']''
+  [1, 'c'],
+  [2, 'java'],
+  [3, 'javascript'],
+  ['correct', 3]          ,
+  [true,'correct 🎊'],[false, 'try again']]);

@@ -129,7 +129,6 @@ console.log(avgOdd / oddValue.length);
 //printing the odds in the nice formatted way
 
 const oddName = Object.entries(game.odds);
-.
 console.log(oddName);
 
 for (const [name, value] of oddName) {
