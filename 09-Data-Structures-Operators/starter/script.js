@@ -293,9 +293,39 @@ console.log(rest.set(document.querySelector('h1'), 'heading')); // map is also u
 
 //-------new way of popullating the map data structure instead of using set
 const question = new Map([
-  ['question', 'what is the best Programming language in the world']''
+  ['question', 'what is the best Programming language in the world'],
   [1, 'c'],
   [2, 'java'],
   [3, 'javascript'],
-  ['correct', 3]          ,
-  [true,'correct 🎊'],[false, 'try again']]);
+  ['correct', 3],
+  [true, 'correct 🎊'],
+  [false, 'try again'],
+]); // we pass an array of array where in each array first value represent the key and the second value represent the value
+console.log(question);
+
+// Object.entries(openingHours) has the same array of arrays like structure so we can easliy convert it into maps
+
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+//maps are also iterable so we can using looping
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') {
+    console.log(`Option ${key} :${value}`);
+  }
+}
+
+let correctAnswer = Number(prompt('write down the correct answer'));
+console.log(correctAnswer);
+
+// seeing if my answer is correct or not
+// console.log(correctAnswer === 3 ? question.get(true) : question.get(false));   ---first method
+
+//second method
+console.log(question.get(question.get('correct') === correctAnswer));
+
+// converting map back to array of arrays
+
+console.log([...question]); // by unpacking the question map which this us 7 array and then putting all arrays into an array
