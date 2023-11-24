@@ -329,3 +329,4 @@ console.log(question.get(question.get('correct') === correctAnswer));
 // converting map back to array of arrays
 
 console.log([...question]); // by unpacking the question map which this us 7 array and then putting all arrays into an array
+console.log(question.entries(), question.keys(), question.values());
