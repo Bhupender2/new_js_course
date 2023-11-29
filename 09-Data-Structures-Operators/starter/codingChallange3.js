@@ -27,11 +27,17 @@ const flights =
 console.log(flights.split('+'));
 
 // now we are applying for of loop in this array that we got
+// we have to slice the string two times so we make a function for this
+const getSlicedCode = str => str.toUpperCase().slice(0, 3);
 
 for (const flight of flights.split('+')) {
   const [a, b, c, d] = flight.split(';');
-  const output = `${a.replace(/_/g, ' ')} from ${b
-    .toUpperCase()
-    .slice(0, 3)} to ${c.toUpperCase().slice(0, 3)} (${d.replace(':', 'h')})`;
+  const output = `${a.startsWith('_Delayed') ? '🔴' : ''}${a.replace(
+    /_/g,
+    ' '
+  )} from ${getSlicedCode(b)} to ${getSlicedCode(c)} (${d.replace(
+    ':',
+    'h'
+  )})`.padStart(50);
   console.log(output);
 }
