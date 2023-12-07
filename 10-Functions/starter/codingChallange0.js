@@ -23,12 +23,20 @@ const poll = {
       )
     );
     console.log(answer);
-    const updatedAnswer =
-      answer >= 0 && answer <= 3
-        ? (this.answers[answer] += 1)
-        : 'choose a valid option';
-    console.log(updatedAnswer);
-    console.log(poll.answers);
+
+    //1st method
+    // const updatedAnswer =
+    //   answer >= 0 && answer <= 3
+    //     ? (this.answers[answer] += 1)
+    //     : 'choose a valid option';
+    //  console.log(updatedAnswer);
+
+    //2nd method-- more concise when we dont know the array length
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+
+    console.log(this.answers);
     this.displayResults('string');
   },
 
@@ -47,3 +55,33 @@ const register = poll.registerNewAnswer;
 
 //question 2
 document.querySelector('.poll').addEventListener('click', register.bind(poll)); // we using bind beacuse here this keyword on calling function will point to poll element
+
+// question 3
+
+// poll.displayResults.call({ answers: [2, 3, 5, 7, 8, 11] }, 'string'); // we now wanted to point this keyword to our new answers method
+
+poll.displayResults.bind({ answers: [2, 3, 5, 7, 8, 11111] })('array');
+
+// closures example demonstration
+
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+g();
+f();
+
+// coding challanage 2
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
