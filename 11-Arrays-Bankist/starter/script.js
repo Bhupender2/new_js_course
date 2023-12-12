@@ -99,3 +99,87 @@ displayMovements(account1.movements);
 // currencies.forEach(function (value, key, map) {
 //   console.log(`${key}: ${value}`);
 // });
+
+//coding challange 1
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const updatedJuliaDogs = dogsJulia.slice(); // we are making a shallow copy coz its a bad practice to mutate the parameters
+
+  updatedJuliaDogs.shift();
+  updatedJuliaDogs.splice(-2);
+
+  console.log(updatedJuliaDogs);
+
+  // making an array from the two datas
+  const remainingDog = updatedJuliaDogs.concat(dogsKate);
+
+  console.log(remainingDog);
+
+  //for remaining dogs we will use forEach method to loop over array to find out which one is puppy and which one is adult
+
+  remainingDog.forEach(function (dogAge, i) {
+    const adultOrPuppy =
+      dogAge >= 3
+        ? console.log(
+            `Dog Number ${i + 1} is an adult and is ${dogAge} Years Old`
+          )
+        : console.log(`Dog Number ${i + 1} is still a puppy 🐶`);
+  });
+};
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+//map method
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+
+//using function expression
+// const movementsUSD = movements.map(function (mov, i) {
+//   // map returns a new array so we need to store it
+//   console.log(mov * eurToUsd);
+//   return mov * eurToUsd;
+// });
+
+//using arrow function
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movementsUSD);
+
+// taking the initals of the userName
+
+// const user = 'Steven Thomas Williams';
+// const userName = user
+//   .toLocaleLowerCase()
+//   .split(' ')
+//   .map(name => name[0])
+//   .join('');
+
+// console.log(userName);
+
+// making a function out of it instead of writing it into the global context
+
+// const createUserName = function (user) {
+//   const userName = user
+//     .toLocaleLowerCase()
+//     .split(' ')
+//     .map(name => name[0])
+//     .join('');
+//   return userName; // userName will return all the return values in a NEW ARRAY
+// };
+
+// console.log(createUserName('Steven Thomas Williams'));
+
+// making a function which make a property of initials into account array modifying the previous function
+
+const createUserName = function (accs) {
+  accs.forEach(function (acc) {
+    acc.userName = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUserName(accounts);
+console.log(accounts);
