@@ -61,22 +61,41 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+//-------DOM MANIPULATION------
+// we can write this in global context but that is not a good practice so always create a function
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = ''; // first emptying the container so that we can pit the new elements in it
+  //.textContent=0   it is similar to innerHtml but here we return html tags instead of text
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `<div class="movements__row">
+    <div class="movements__type movements__type--${type}">
+    ${i + 1} ${type}
+    </div>
+    <div class="movements__value">${mov}€</div>
+  </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html); // adding html inside the movement container first argument is the string where we want to add and second argument is what html code we want to add
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-console.log(currencies);
-//similar to array it passes the value, key and the intire map
-currencies.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-});
+// console.log(currencies);
+// //similar to array it passes the value, key and the intire map
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
