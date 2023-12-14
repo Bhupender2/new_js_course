@@ -183,3 +183,36 @@ const createUserName = function (accs) {
 };
 createUserName(accounts);
 console.log(accounts);
+
+//coding challange 2
+
+const calcAverageHumanAge = function (ages) {
+  const humanAgeData = ages.map(function (age) {
+    if (age <= 2) return 2 * age;
+    else if (age > 2) return 16 + 4 * age;
+  });
+  console.log(humanAgeData);
+
+  const olderDogs = humanAgeData.filter(function (age) {
+    return age >= 18;
+  });
+
+  console.log(olderDogs);
+
+  //1st method of doing it
+
+  const totalHumanAge =
+    olderDogs.reduce(function (acc, age) {
+      return acc + age;
+    }, 0) / olderDogs.length;
+
+  //2nd method of doing it ----like this (2+3)/2 === 2/2+3/2
+
+  // const totalHumanAge = olderDogs.reduce(function (acc, age, i, arr) {
+  //   return acc + age / arr.length; -----we are diving in every iteration
+  // }, 0);
+
+  console.log(totalHumanAge);
+};
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
