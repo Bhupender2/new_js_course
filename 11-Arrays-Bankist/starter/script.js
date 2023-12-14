@@ -80,6 +80,43 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+//---display total value---
+
+const displayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  console.log(balance);
+
+  labelBalance.textContent = `${balance}€`;
+};
+
+displayBalance(account1.movements);
+
+//---total incomes (deposits(money that was only deposited not withdrawal))
+
+const displaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outcomes = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(mov => mov * 0.012)
+    .filter((inter, i, arr) => {
+      console.log(arr); // only interset value which are greater than 1 will be stored
+      return inter >= 1;
+    })
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumInterest.textContent = `${Math.abs(interest)}€`;
+};
+
+displaySummary(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -100,34 +137,34 @@ displayMovements(account1.movements);
 //   console.log(`${key}: ${value}`);
 // });
 
-//coding challange 1
+//--------------------------------------------------------coding challange 1
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  const updatedJuliaDogs = dogsJulia.slice(); // we are making a shallow copy coz its a bad practice to mutate the parameters
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const updatedJuliaDogs = dogsJulia.slice(); // we are making a shallow copy coz its a bad practice to mutate the parameters
 
-  updatedJuliaDogs.shift();
-  updatedJuliaDogs.splice(-2);
+//   updatedJuliaDogs.shift();
+//   updatedJuliaDogs.splice(-2);
 
-  console.log(updatedJuliaDogs);
+//   console.log(updatedJuliaDogs);
 
-  // making an array from the two datas
-  const remainingDog = updatedJuliaDogs.concat(dogsKate);
+//   // making an array from the two datas
+//   const remainingDog = updatedJuliaDogs.concat(dogsKate);
 
-  console.log(remainingDog);
+//   console.log(remainingDog);
 
-  //for remaining dogs we will use forEach method to loop over array to find out which one is puppy and which one is adult
+//   //for remaining dogs we will use forEach method to loop over array to find out which one is puppy and which one is adult
 
-  remainingDog.forEach(function (dogAge, i) {
-    const adultOrPuppy =
-      dogAge >= 3
-        ? console.log(
-            `Dog Number ${i + 1} is an adult and is ${dogAge} Years Old`
-          )
-        : console.log(`Dog Number ${i + 1} is still a puppy 🐶`);
-  });
-};
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+//   remainingDog.forEach(function (dogAge, i) {
+//     const adultOrPuppy =
+//       dogAge >= 3
+//         ? console.log(
+//             `Dog Number ${i + 1} is an adult and is ${dogAge} Years Old`
+//           )
+//         : console.log(`Dog Number ${i + 1} is still a puppy 🐶`);
+//   });
+// };
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 //map method
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -172,47 +209,57 @@ console.log(movementsUSD);
 
 // making a function which make a property of initials into account array modifying the previous function
 
-const createUserName = function (accs) {
-  accs.forEach(function (acc) {
-    acc.userName = acc.owner
-      .toLocaleLowerCase()
-      .split(' ')
-      .map(name => name[0])
-      .join('');
-  });
-};
-createUserName(accounts);
-console.log(accounts);
+// const createUserName = function (accs) {
+//   accs.forEach(function (acc) {
+//     acc.userName = acc.owner
+//       .toLocaleLowerCase()
+//       .split(' ')
+//       .map(name => name[0])
+//       .join('');
+//   });
+// };
+// createUserName(accounts);
+// console.log(accounts);
 
-//coding challange 2
+// //coding challange 2
 
-const calcAverageHumanAge = function (ages) {
-  const humanAgeData = ages.map(function (age) {
-    if (age <= 2) return 2 * age;
-    else if (age > 2) return 16 + 4 * age;
-  });
-  console.log(humanAgeData);
+// const calcAverageHumanAge = function (ages) {
+//   const humanAgeData = ages.map(function (age) {
+//     if (age <= 2) return 2 * age;
+//     else if (age > 2) return 16 + 4 * age;
+//   });
+//   console.log(humanAgeData);
 
-  const olderDogs = humanAgeData.filter(function (age) {
-    return age >= 18;
-  });
+//   const olderDogs = humanAgeData.filter(function (age) {
+//     return age >= 18;
+//   });
 
-  console.log(olderDogs);
+//   console.log(olderDogs);
 
-  //1st method of doing it
+//   //1st method of doing it
 
-  const totalHumanAge =
-    olderDogs.reduce(function (acc, age) {
-      return acc + age;
-    }, 0) / olderDogs.length;
+//   const totalHumanAge =
+//     olderDogs.reduce(function (acc, age) {
+//       return acc + age;
+//     }, 0) / olderDogs.length;
 
-  //2nd method of doing it ----like this (2+3)/2 === 2/2+3/2
+//   //2nd method of doing it ----like this (2+3)/2 === 2/2+3/2
 
-  // const totalHumanAge = olderDogs.reduce(function (acc, age, i, arr) {
-  //   return acc + age / arr.length; -----we are diving in every iteration
-  // }, 0);
+//   // const totalHumanAge = olderDogs.reduce(function (acc, age, i, arr) {
+//   //   return acc + age / arr.length; -----we are diving in every iteration
+//   // }, 0);
 
-  console.log(totalHumanAge);
-};
+//   console.log(totalHumanAge);
+// };
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+
+// coding challange 3 --calculating humanAverageAge using arrow function only
+
+const calcAverageHumanAge = ages =>
+  ages
+    .map(mov => (mov <= 2 ? mov * 2 : 16 + mov * 4))
+    .filter(mov => mov >= 18)
+    .reduce((acc, mov, i, arr) => acc + mov / arr.length, 0);
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
