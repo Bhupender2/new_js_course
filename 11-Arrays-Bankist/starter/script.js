@@ -78,7 +78,6 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html); // adding html inside the movement container first argument is the string where we want to add and second argument is what html code we want to add
   });
 };
-displayMovements(account1.movements);
 
 //---display total value---
 
@@ -89,24 +88,22 @@ const displayBalance = function (movements) {
   labelBalance.textContent = `${balance}€`;
 };
 
-displayBalance(account1.movements);
-
 //---total incomes (deposits(money that was only deposited not withdrawal))
 
-const displaySummary = function (movements) {
-  const incomes = movements
+const displaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const outcomes = movements
+  const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcomes)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(mov => mov * 0.012)
+    .map(mov => (mov * acc.interestRate) / 100)
     .filter((inter, i, arr) => {
       console.log(arr); // only interset value which are greater than 1 will be stored
       return inter >= 1;
@@ -114,8 +111,6 @@ const displaySummary = function (movements) {
     .reduce((acc, mov) => acc + mov, 0);
   labelSumInterest.textContent = `${Math.abs(interest)}€`;
 };
-
-displaySummary(account1.movements);
 
 // making a function which make a property of initials into account array modifying the previous function
 
@@ -131,14 +126,36 @@ const createUserName = function (accs) {
 createUserName(accounts);
 console.log(accounts);
 
-// event handler
+let currentAccount; // defining the currentAccount outside beacuse we will need this currentAccount later in other functions
+
 //---button is in form element so here in html when we click on submit button its default behavior is to reload the page and to prevent this we will give e(event) parameter to the event handler (call back function).
 btnLogin.addEventListener('click', function (e) {
-  e.preventDefault(); // it will prevent the page to reload on clicking the login button
-  console.log('LOGIN');
-  accounts.find(acc => acc.userName === inputLoginUsername.value);
-  
-});
+  e.preventDefault(); // it will prevent the page to reload on clicking the login button -prevent form from submitting
+  currentAccount = accounts.find(
+    // find method will return undefined if no one matches the condition
+    acc => acc.userName === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // display UI and message
+    labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
+
+    inputLoginUsername.value = inputLoginPin.value = ''; //we can do this because assignment operator works from right to left ...
+
+    inputLoginPin.blur(); // input field will looses its focus
+    //changing the opacity on login
+    containerApp.style.opacity = 100;
+
+    //display movements
+    displayMovements(currentAccount.movements);
+
+    //display balance
+    displayBalance(currentAccount.movements);
+
+    // display summary
+    displaySummary(currentAccount);
+  }
+}); // hitting enter on any input fields will trigger a click event on btnlogin button---it is an interseting facts
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -190,9 +207,9 @@ btnLogin.addEventListener('click', function (e) {
 // checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 //map method
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const eurToUsd = 1.1;
+// const eurToUsd = 1.1;
 
 //using function expression
 // const movementsUSD = movements.map(function (mov, i) {
@@ -202,9 +219,9 @@ const eurToUsd = 1.1;
 // });
 
 //using arrow function
-const movementsUSD = movements.map(mov => mov * eurToUsd);
+// const movementsUSD = movements.map(mov => mov * eurToUsd);
 
-console.log(movementsUSD);
+// console.log(movementsUSD);
 
 // taking the initals of the userName
 
