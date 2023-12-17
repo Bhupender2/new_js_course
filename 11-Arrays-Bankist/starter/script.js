@@ -81,11 +81,11 @@ const displayMovements = function (movements) {
 
 //---display total value---
 
-const displayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  console.log(balance);
+const displayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  console.log(acc.balance);
 
-  labelBalance.textContent = `${balance}€`;
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 //---total incomes (deposits(money that was only deposited not withdrawal))
@@ -126,6 +126,17 @@ const createUserName = function (accs) {
 createUserName(accounts);
 console.log(accounts);
 
+const updateUI = function (acc) {
+  //display movements
+  displayMovements(acc.movements);
+
+  //display balance
+  displayBalance(acc);
+
+  // display summary
+  displaySummary(acc);
+};
+
 let currentAccount; // defining the currentAccount outside beacuse we will need this currentAccount later in other functions
 
 //---button is in form element so here in html when we click on submit button its default behavior is to reload the page and to prevent this we will give e(event) parameter to the event handler (call back function).
@@ -135,7 +146,7 @@ btnLogin.addEventListener('click', function (e) {
     // find method will return undefined if no one matches the condition
     acc => acc.userName === inputLoginUsername.value
   );
-  console.log(currentAccount);
+  console.log(currentAccount); // currentAccount is just another variable which point to the same object in the memory heap like Account1 ,2,3 ,4
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // display UI and message
     labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
@@ -145,17 +156,35 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur(); // input field will looses its focus
     //changing the opacity on login
     containerApp.style.opacity = 100;
-
-    //display movements
-    displayMovements(currentAccount.movements);
-
-    //display balance
-    displayBalance(currentAccount.movements);
-
-    // display summary
-    displaySummary(currentAccount);
+    //update the UI
+    updateUI(currentAccount);
   }
 }); // hitting enter on any input fields will trigger a click event on btnlogin button---it is an interseting facts
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault(); // it will prevent it from reloading or preventing it from submitting
+  const amount = inputTransferAmount.value;
+  const recieverAcc = accounts.find(
+    acc => acc.userName === inputTransferTo.value
+  );
+
+  //clearing the input fields
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    amount > 0 &&
+    recieverAcc &&
+    currentAccount.balance >= amount &&
+    recieverAcc?.userName !== currentAccount.userName
+  ) {
+    // doing the transfer
+    currentAccount.movements.push(-amount);
+    recieverAcc.movements.push(amount);
+
+    //update the UI
+    updateUI(currentAccount);
+  }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
