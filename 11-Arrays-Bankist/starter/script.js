@@ -117,6 +117,29 @@ const displaySummary = function (movements) {
 
 displaySummary(account1.movements);
 
+// making a function which make a property of initials into account array modifying the previous function
+
+const createUserName = function (accs) {
+  accs.forEach(function (acc) {
+    acc.userName = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUserName(accounts);
+console.log(accounts);
+
+// event handler
+//---button is in form element so here in html when we click on submit button its default behavior is to reload the page and to prevent this we will give e(event) parameter to the event handler (call back function).
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault(); // it will prevent the page to reload on clicking the login button
+  console.log('LOGIN');
+  accounts.find(acc => acc.userName === inputLoginUsername.value);
+  
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -207,20 +230,6 @@ console.log(movementsUSD);
 
 // console.log(createUserName('Steven Thomas Williams'));
 
-// making a function which make a property of initials into account array modifying the previous function
-
-// const createUserName = function (accs) {
-//   accs.forEach(function (acc) {
-//     acc.userName = acc.owner
-//       .toLocaleLowerCase()
-//       .split(' ')
-//       .map(name => name[0])
-//       .join('');
-//   });
-// };
-// createUserName(accounts);
-// console.log(accounts);
-
 // //coding challange 2
 
 // const calcAverageHumanAge = function (ages) {
@@ -256,13 +265,13 @@ console.log(movementsUSD);
 
 // coding challange 3 --calculating humanAverageAge using arrow function only
 
-const calcAverageHumanAge = ages =>
-  ages
-    .map(mov => (mov <= 2 ? mov * 2 : 16 + mov * 4))
-    .filter(mov => mov >= 18)
-    .reduce((acc, mov, i, arr) => acc + mov / arr.length, 0);
+// const calcAverageHumanAge = ages =>
+//   ages
+//     .map(mov => (mov <= 2 ? mov * 2 : 16 + mov * 4))
+//     .filter(mov => mov >= 18)
+//     .reduce((acc, mov, i, arr) => acc + mov / arr.length, 0);
 
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
-for (const account of accounts)
-  if (account.owner === 'Jessica Davis') console.log(account);
+// for (const account of accounts)
+//   if (account.owner === 'Jessica Davis') console.log(account);
