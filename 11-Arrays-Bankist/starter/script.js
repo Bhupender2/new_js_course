@@ -163,7 +163,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault(); // it will prevent it from reloading or preventing it from submitting
-  const amount = inputTransferAmount.value;
+  const amount = Number(inputTransferAmount.value);
   const recieverAcc = accounts.find(
     acc => acc.userName === inputTransferTo.value
   );
@@ -184,6 +184,32 @@ btnTransfer.addEventListener('click', function (e) {
     //update the UI
     updateUI(currentAccount);
   }
+});
+
+// -----CLOSING AN ACCOUNT-----
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.userName &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    // finding the index
+    const index = accounts.findIndex(
+      // find index is similar to find method but it returns the index of the first element which satisfies the condition not the ELEMENT. and both find and findindex is introduced in es6 so they dont work in superold browser
+      acc => acc.userName === currentAccount.userName
+    );
+
+    // indexOf() -- we can do this but it only when the value is in the array for simpler condition but findIndex we can create complex condition but with indexof we cant
+
+    // delete account
+    accounts.splice(index, 1); // first one is the index from where the deletion will start 2nd one is how many element will be deleted
+
+    //hide ui
+    containerApp.style.opacity = 0;
+  }
+  inputClosePin.value = inputCloseUsername.value = ''; // whether the username is correct or not on clicking the close Button we need to clear the input fields
 });
 
 /////////////////////////////////////////////////
