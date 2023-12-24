@@ -63,11 +63,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 //-------DOM MANIPULATION------
 // we can write this in global context but that is not a good practice so always create a function
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ''; // first emptying the container so that we can pit the new elements in it
   //.textContent=0   it is similar to innerHtml but here we return html tags instead of text
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
-  movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">
@@ -186,6 +187,24 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+//------REQUESTING A LOAN-----
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //adding the deposit
+    currentAccount.movements.push(amount);
+
+    //update the UI
+    updateUI(currentAccount);
+  }
+  // clearing the input fields
+
+  inputLoanAmount.value = '';
+});
+
 // -----CLOSING AN ACCOUNT-----
 
 btnClose.addEventListener('click', function (e) {
@@ -210,6 +229,21 @@ btnClose.addEventListener('click', function (e) {
     containerApp.style.opacity = 0;
   }
   inputClosePin.value = inputCloseUsername.value = ''; // whether the username is correct or not on clicking the close Button we need to clear the input fields
+});
+
+// ---------OVERALL BALANCE OF THE BANK------
+
+const overallBalance = accounts
+  .flatMap(mov => mov.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+// ----SORTING THE MOVEMENTS---
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
