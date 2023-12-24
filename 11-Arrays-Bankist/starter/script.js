@@ -246,6 +246,23 @@ btnSort.addEventListener('click', function (e) {
   sorted = !sorted;
 });
 
+// imagine if there is no movements array and we have to pick movements values from ui to create array programatically we use Array.from() function
+labelBalance.addEventListener('click', function () {
+  //first method
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+
+  //second method
+
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')].map(
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI2);
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
