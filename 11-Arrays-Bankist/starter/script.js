@@ -263,6 +263,29 @@ labelBalance.addEventListener('click', function () {
   console.log(movementsUI2);
 });
 
+// practice array method
+
+//first find the total deposits that had done.
+//1
+const totalBankDeposits = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalBankDeposits);
+
+//2 count total deposits with atleast 1000
+//method 1
+// const bigDeposits = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+// console.log(bigDeposits);
+
+//method 2
+const bigDeposits = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, curr) => (curr >= 1000 ? count + 1 : count), 0); // here we use reduce to simply count the elements which satisfies the array here our accumulator is a count and our accumulator can be anything
+console.log(bigDeposits);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
