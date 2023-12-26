@@ -267,10 +267,16 @@ labelBalance.addEventListener('click', function () {
 
 //first find the total deposits that had done.
 //1
+// const totalBankDeposits = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalBankDeposits);
+
+//now only using reduce method
 const totalBankDeposits = accounts
   .flatMap(acc => acc.movements)
-  .filter(mov => mov > 0)
-  .reduce((acc, mov) => acc + mov, 0);
+  .reduce((acc, mov) => (mov > 0 ? acc + mov : acc), 0);
 console.log(totalBankDeposits);
 
 //2 count total deposits with atleast 1000
@@ -285,6 +291,42 @@ const bigDeposits = accounts
   .flatMap(acc => acc.movements)
   .reduce((count, curr) => (curr >= 1000 ? count + 1 : count), 0); // here we use reduce to simply count the elements which satisfies the array here our accumulator is a count and our accumulator can be anything
 console.log(bigDeposits);
+
+// make an an object with properties like total deposits and total withdrawal
+const { totalDeposits, totalWithdrawal } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, acc) => {
+      // method 1
+      // acc > 0 ? (sums.totalDeposits += acc) : (sums.totalWithdrawal += acc);
+      // return sums;
+
+      //method 2-- accessing the object property using [ ] notation we use this when we need to access property dynamically or property is in a stored variable
+      sums[acc > 0 ? 'totalDeposits' : 'totalWithdrawal'] += acc;
+      return sums;
+    },
+    { totalDeposits: 0, totalWithdrawal: 0 } // this is the initial value of sums accumulator
+  );
+
+console.log(totalBankDeposits, totalWithdrawal);
+
+// making an sentence in a titleCase expect the exceptions
+
+const convertTitleCase = function (title) {
+  const exceptions = ['in', 'on', 'at', 'the', 'and', 'a', 'in', 'with', 'is'];
+  const captalizeFirstWord = str => str[0].toUpperCase() + str.slice(1);
+
+  const titleCase = title
+    .toLocaleLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : captalizeFirstWord(word)))
+    .join(' ');
+  return captalizeFirstWord(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG TITLE'));
+console.log(convertTitleCase('and the another in on the hello'));
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
