@@ -308,7 +308,7 @@ const { totalDeposits, totalWithdrawal } = accounts
     { totalDeposits: 0, totalWithdrawal: 0 } // this is the initial value of sums accumulator
   );
 
-console.log(totalBankDeposits, totalWithdrawal);
+console.log(totalDeposits, totalWithdrawal);
 
 // making an sentence in a titleCase expect the exceptions
 
